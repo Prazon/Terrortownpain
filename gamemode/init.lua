@@ -69,8 +69,6 @@ CreateConVar("ttt_haste_minutes_per_death", "0.5", FCVAR_NOTIFY)
 
 -- Player Spawning
 CreateConVar("ttt_spawn_wave_interval", "0")
-CreateConVar("ttt_enforce_playermodel", "0")
-
 
 CreateConVar("ttt_traitor_pct", "0.25")
 CreateConVar("ttt_traitor_max", "32")

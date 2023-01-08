@@ -9,6 +9,7 @@ local pairs = pairs
 
 CreateConVar("ttt_bots_are_spectators", "0", FCVAR_ARCHIVE)
 CreateConVar("ttt_dyingshot", "0")
+CreateConVar("ttt_enforce_playermodel", "0")
 
 CreateConVar("ttt_killer_dna_range", "550")
 CreateConVar("ttt_killer_dna_basetime", "100")
@@ -254,6 +255,11 @@ function GM:PlayerSetModel(ply)
       local mdl = GAMEMODE.playermodel or "models/player/phoenix.mdl"
       util.PrecacheModel(mdl)
       ply:SetModel(mdl)
+   end
+
+   local selector = GetConVar("sv_playermodel_selector_force")
+   if selector ~= nil and selector:GetBool() then
+      ply:ConCommand("playermodel_apply")
    end
 
    -- Always clear color state, may later be changed in TTTPlayerSetColor
