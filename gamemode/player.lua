@@ -92,6 +92,11 @@ function GM:PlayerSpawn(ply)
 
    ply:SetupHands()
 
+   local selector = GetConVar("sv_playermodel_selector_force")
+   if selector ~= nil and selector:GetBool() then
+      ply:ConCommand("playermodel_apply")
+   end
+
    SCORE:HandleSpawn(ply)
 end
 
@@ -255,11 +260,6 @@ function GM:PlayerSetModel(ply)
       local mdl = GAMEMODE.playermodel or "models/player/phoenix.mdl"
       util.PrecacheModel(mdl)
       ply:SetModel(mdl)
-   end
-
-   local selector = GetConVar("sv_playermodel_selector_force")
-   if selector ~= nil and selector:GetBool() then
-      ply:ConCommand("playermodel_apply")
    end
 
    -- Always clear color state, may later be changed in TTTPlayerSetColor
